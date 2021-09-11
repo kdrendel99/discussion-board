@@ -1,12 +1,12 @@
 import React from "react";
 import Header from './Header';
-import ForumControl from './ForumControl';
+import PostControl from './PostControl';
 
 function App(){
   return (
     <React.Fragment>
       <Header/>
-      <ForumControl/>
+      <PostControl/>
     </React.Fragment>
   );
 }
