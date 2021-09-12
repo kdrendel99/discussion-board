@@ -28,6 +28,7 @@ describe("rootReducer", () => {
       type: c.ADD_POST,
       title: 'Test post',
       body: 'test body',
+      score: 0,
       id: 1
     }
     store.dispatch(action);

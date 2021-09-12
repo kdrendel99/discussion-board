@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import * as a from './../actions';
 import { connect } from 'react-redux';
 
+
 class PostControl extends React.Component{
   constructor(props) {
     super(props);
@@ -29,12 +30,10 @@ class PostControl extends React.Component{
     }
   }
 
-  handleAddingNewPostToList = (newPost) => {
+  handleAddingNewPostToList = () => {
     const { dispatch } = this.props;
-    const action = a.addPost(newPost);
+    const action = a.toggleForm();
     dispatch(action);
-    const action2 = a.toggleForm();
-    dispatch(action2);
   }
 
   handleChangingSelectedPost = (id) => {
@@ -54,15 +53,15 @@ class PostControl extends React.Component{
     this.setState({editing:true});
   }
 
-  handleEditingPostInList = (postToEdit) => {
-    const { dispatch } = this.props;
-    const action = a.addPost(postToEdit);
-    dispatch(action);
-    this.setState({
-      editing: false,
-      selectedPost: null
-    });
-  }
+  // handleEditingPostInList = (postToEdit) => {
+  //   const { dispatch } = this.props;
+  //   const action = a.addPost(postToEdit);
+  //   dispatch(action);
+  //   this.setState({
+  //     editing: false,
+  //     selectedPost: null
+  //   });
+  // }
 
   handleVoteClick = (id, vote) => {
     const { dispatch } = this.props;

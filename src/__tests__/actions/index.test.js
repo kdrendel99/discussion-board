@@ -21,4 +21,10 @@ describe('discussion-form actions', () => {
       id: 1
     });
   });
+  it('deletePost should create DELETE_POST action', () => {
+    expect(actions.deletePost(1)).toEqual({
+      type: c.DELETE_POST,
+      id: 1
+    });
+  });
 });

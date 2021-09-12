@@ -8,15 +8,18 @@ describe('postListReducer', () => {
   const currentState = {
     1: {title: 'My test post',
     body: 'body test post 1',
+    score: 0,
     id: 1 },
     2: {title: 'My test post 2',
     body: 'body test post 2',
+    score: 0,
     id: 2 }
     }
 
     const postData = {
       title: 'My test post',
       body: 'body test post 1',
+      score: 0,
       id: 1
     };
 
@@ -31,6 +34,7 @@ describe('postListReducer', () => {
       type: c.ADD_POST,
       title: title,
       body: body,
+      score: 0,
       id: id
     };
 
@@ -38,6 +42,7 @@ describe('postListReducer', () => {
       [id] : {
         title: title,
         body: body,
+        score: 0,
         id: id
       }
     });
@@ -51,6 +56,7 @@ describe('postListReducer', () => {
     expect(postListReducer(currentState, action)).toEqual({
       2: {title: 'My test post 2',
       body: 'body test post 2',
+      score: 0,
       id: 2 }
     });
   });
