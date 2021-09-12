@@ -10,7 +10,6 @@ import { connect } from 'react-redux';
 class PostControl extends React.Component{
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       selectedPost: null,
       editing: false
@@ -75,7 +74,7 @@ class PostControl extends React.Component{
     let currentlyVisibleState = null;
     let buttonText = null;
 
-    if (this.state.editing ) {      
+    if (this.state.editing) {      
       currentlyVisibleState = <EditPostForm post = {this.state.selectedPost} onEditPost = {this.handleEditingPostInList} />
       buttonText = "Return to Post List";
     } else if (this.state.selectedPost != null) {
@@ -88,14 +87,14 @@ class PostControl extends React.Component{
       currentlyVisibleState = <NewPostForm onNewPostCreation={this.handleAddingNewPostToList} />;
       buttonText = "Return to Post List";
     } else {
-      currentlyVisibleState = <PostList postList={this.props.masterPostList} onPostSelection={this.handleChangingSelectedPost} onVoteClick={this.handleVoteClick}/>;
+      currentlyVisibleState = (<PostList postList={this.props.masterPostList} onPostSelection={this.handleChangingSelectedPost} onVoteClick={this.handleVoteClick}/>);
       // Because a user will actually be clicking on the Post in the Post component, we will need to pass our new handleChangingSelectedPost method as a prop.
       buttonText = "Add Post";
     }
     return (
       <React.Fragment>
         {currentlyVisibleState}
-        <button onClick={this.handleClick}>{buttonText}</button> { /* new code */}
+        <button onClick={this.handleClick}>{buttonText}</button> 
       </React.Fragment>
     );
   }
