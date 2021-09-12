@@ -10,8 +10,10 @@ function PostList(props){
       {Object.values(props.postList).map((post) =>
         <Post
           whenPostClicked = { props.onPostSelection }
+          onVoteClick = {props.onVoteClick}
           title={post.title}
           body={post.body}
+          score={post.score}
           formattedWaitTime={post.formattedWaitTime}
           id={post.id}
           key={post.id}/>

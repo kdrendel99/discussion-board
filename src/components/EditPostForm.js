@@ -10,6 +10,7 @@ function EditPostForm(props){
     props.onEditPost({
       title: event.target.title.value, 
       body: event.target.body.value, 
+      score: post.score,
       id: post.id});
   }
 

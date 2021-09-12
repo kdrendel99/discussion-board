@@ -16,6 +16,7 @@ store.subscribe(() =>
 
 ReactDOM.render(
   <Provider store={store}>
+    <h1> help me please fuck</h1>
     <App />
   </Provider>,
   document.getElementById('root')

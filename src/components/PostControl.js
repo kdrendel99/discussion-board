@@ -65,38 +65,12 @@ class PostControl extends React.Component{
     });
   }
 
+  handleVoteClick = (id, vote) => {
+    const { dispatch } = this.props;
+    const action = a.updateScore(id, vote);
+    dispatch(action);
+  }
 
-  // handleBuy = (id) => {
-  // const postToEdit = this.state.postData.filter(post => post.id === id)[0];
-
-  // // if (postToEdit.remainingPints === 0) {
-  // //   return;
-  // // }
-
-  //   const editedPost = {...postToEdit, 
-  //     // remainingPints: postToEdit.remainingPints - 1
-  //   };
-
-  //   // const PostToAddToCart = {...editedPost};
-  //   // const editedCartList = this.state.cartList.concat(PostToAddToCart);
-  //   // // <Cart cartList = {this.state.cartList}/>
-  //   // console.log(editedCartList);
-  //   const editedPostData = this.state.postData
-  //     .map(currentPost => {
-  //       if (currentPost.id === editedPost.id) {
-  //         return editedPost;
-  //       }
-  //       else {
-  //         return currentPost;
-  //       }
-  //     });
-  //   this.setState({
-  //     postData: editedPostData,
-  //     // cartList: editedCartList,
-  //     selectedPost: null,
-  //     editing: false
-  //   });
-  // }
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
@@ -114,7 +88,7 @@ class PostControl extends React.Component{
       currentlyVisibleState = <NewPostForm onNewPostCreation={this.handleAddingNewPostToList} />;
       buttonText = "Return to Post List";
     } else {
-      currentlyVisibleState = <PostList postList={this.props.masterPostList} onPostSelection={this.handleChangingSelectedPost} />;
+      currentlyVisibleState = <PostList postList={this.props.masterPostList} onPostSelection={this.handleChangingSelectedPost} onVoteClick={this.handleVoteClick}/>;
       // Because a user will actually be clicking on the Post in the Post component, we will need to pass our new handleChangingSelectedPost method as a prop.
       buttonText = "Add Post";
     }

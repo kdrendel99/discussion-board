@@ -16,7 +16,11 @@ function NewPostForm(props){
   
   function handleNewPostFormSubmission(event) {
     event.preventDefault();
-    props.onNewPostCreation({title: event.target.title.value, body: event.target.body.value, id: v4()});
+    props.onNewPostCreation({
+      title: event.target.title.value, 
+      body: event.target.body.value, 
+      score: 0,
+      id: v4()});
   }
   // event.target gives us access to the event that was just fired. In this case, we just had a submit event. We can actually grab the values that came from that submit event. 
 }

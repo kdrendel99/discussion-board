@@ -2,7 +2,7 @@ import * as c from './ActionTypes';
 //ACTION CREATORS
 
 export const deletePost = id => ({
-  type: 'DELETE_POST',
+  type: c.DELETE_POST,
   id
 });
 
@@ -19,3 +19,9 @@ export const addPost = (post) => {
     id: id
   }
 }
+
+export const updateScore = (id, vote) => ({
+  type: c.UPDATE_SCORE,
+  id,
+  vote
+})

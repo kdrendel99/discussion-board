@@ -7,8 +7,11 @@ function Post(props){
       <div onClick = {() => props.whenPostClicked(props.id)}>
       <h1>{props.title}</h1>
       <h3>{props.body}</h3>
+      <h4>{props.score}</h4>
       <hr/>
       </div>
+      <button onClick = {() => props.onVoteClick(props.id, 1)}>Upvote</button> 
+      <button onClick = {() => props.onVoteClick(props.id, -1)}>Down vote</button> 
     </React.Fragment>
   );
 }
@@ -16,6 +19,7 @@ function Post(props){
 Post.propTypes = {
   title: PropTypes.string,
   body: PropTypes.string,
+  score: PropTypes.number,
   id: PropTypes.string,
   whenPostClicked: PropTypes.func
 }; 

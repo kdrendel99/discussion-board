@@ -9,6 +9,7 @@ function PostDetail(props){
       <h1>Post Detail</h1>
       <h3>{post.title}</h3>
       <p><em>{post.body}</em></p>
+      <h4>{post.score}</h4>
       <button onClick={ props.onClickingEdit }>Update Post</button>
       <button onClick={()=> onClickingDelete(post.id) }>Delete Post</button> { /* new code */ }
       <hr/>
