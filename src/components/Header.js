@@ -15,25 +15,25 @@ const CenterText = styled.section`
 function Header(){
   return(
     <React.Fragment>
-      <div style={{marginLeft: "30px"}}>
-        <DiscussionBoardHeader>
-          <h1>Discussion Forum</h1>
-        </DiscussionBoardHeader>
-        <CenterText>
-          <p>A forum to pick your brain.</p>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/signin">Sign in</Link>
-            </li>
-          </ul>
-        </CenterText>
-      </div>
+      <DiscussionBoardHeader>
+        <h1>Discussion Forum</h1>
+      </DiscussionBoardHeader>
+      <CenterText>
+      <p>A forum to pick your brain.</p>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/signin">Sign in</Link>
+        </li>
+        <li>
+          <Link to="/signup">Sign up</Link>
+        </li>
+      </ul>
+      </CenterText>
       <hr/>
     </React.Fragment>
   );
 }
-
 export default Header;
