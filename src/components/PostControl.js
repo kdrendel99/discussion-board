@@ -50,9 +50,7 @@ class PostControl extends React.Component{
   }
 
   handleDeletingPost = (id) => {
-    const { dispatch } = this.props;
-    const action = a.deletePost(id);
-    dispatch(action);
+    this.props.firestore.delete({collection: 'posts', doc: id});
     this.setState({selectedPost: null});
   }
 
@@ -61,15 +59,12 @@ class PostControl extends React.Component{
     this.setState({editing:true});
   }
 
-  // handleEditingPostInList = (postToEdit) => {
-  //   const { dispatch } = this.props;
-  //   const action = a.addPost(postToEdit);
-  //   dispatch(action);
-  //   this.setState({
-  //     editing: false,
-  //     selectedPost: null
-  //   });
-  // }
+  handleEditingPostInList = (postToEdit) => {
+    this.setState({
+      editing: false,
+      selectedPost: null
+    });
+  }
 
   handleVoteClick = (id, vote) => {
     const { dispatch } = this.props;
