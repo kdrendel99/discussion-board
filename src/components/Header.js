@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 function Header(){
   return(
@@ -6,7 +7,15 @@ function Header(){
       <div style={{marginLeft: "30px"}}>
         <h1>Discussion Forum</h1>
         <p>A discussion forum application</p>
-        </div>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/signin">Sign in</Link>
+          </li>
+        </ul>
+      </div>
       <hr/>
     </React.Fragment>
   );
