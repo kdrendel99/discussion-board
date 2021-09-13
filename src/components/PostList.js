@@ -19,6 +19,7 @@ function PostList(props){
         {posts.map((post) => {
           return <Post
             whenPostClicked = { props.onPostSelection }
+            whenVoteClicked = { props.onVoteClick }
             title={post.title}
             body={post.body}
             score={post.score}

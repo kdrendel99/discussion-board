@@ -6,6 +6,7 @@ import EditPostForm from './EditPostForm';
 import PropTypes from "prop-types";
 import * as a from './../actions';
 import { connect } from 'react-redux';
+import { withFirestore } from 'react-redux-firebase'
 
 
 class PostControl extends React.Component{
@@ -37,8 +38,15 @@ class PostControl extends React.Component{
   }
 
   handleChangingSelectedPost = (id) => {
-    const selectedPost = this.props.masterPostList[id];
-    this.setState({selectedPost: selectedPost});
+    this.props.firestore.get({collection: 'posts', doc: id}).then((post) => {
+      const firestorePost = {
+        title: post.get("title"),
+        body: post.get("body"),
+        score: post.get("score"),
+        id: post.id
+      }
+      this.setState({selectedPost: firestorePost});
+    })
   }
 
   handleDeletingPost = (id) => {
@@ -115,4 +123,4 @@ const mapStateToProps = state => {
 
 PostControl = connect(mapStateToProps)(PostControl);
 
-export default PostControl;
+export default withFirestore(PostControl);

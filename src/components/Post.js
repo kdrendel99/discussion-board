@@ -9,8 +9,8 @@ function Post(props){
         <h3>{props.body}</h3>
         <h4>{props.score}</h4>
       </div>
-      <button onClick = {() => props.onVoteClick(props.id, 1)}>Upvote</button> 
-      <button onClick = {() => props.onVoteClick(props.id, -1)}>Down vote</button> 
+      <button onClick = {() => props.whenVoteClicked(props.id, 1)}>Upvote</button> 
+      <button onClick = {() => props.whenVoteClicked(props.id, -1)}>Down vote</button> 
       <hr/>
 
     </React.Fragment>
