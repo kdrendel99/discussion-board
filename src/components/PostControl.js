@@ -68,9 +68,21 @@ class PostControl extends React.Component{
   }
 
   handleVoteClick = (id, vote) => {
-    const { dispatch } = this.props;
-    const action = a.updateScore(id, vote);
-    dispatch(action);
+    this.props.firestore.get({collection: 'posts', doc: id}).then((post) => {
+      const firestorePostScore = {
+        score: post.get("score") + vote
+        // id: post.id
+      }
+      console.log(firestorePostScore.score);
+      // const updatedScore = firestorePostScore + vote;
+      this.props.firestore.update({collection: 'posts', doc: id}, firestorePostScore );
+      // const { dispatch } = this.props;
+      // const action = a.updateScore(firestorePostScore, vote);
+      // dispatch(action);
+    })
+    // const { dispatch } = this.props;
+    // const action = a.updateScore(id, vote);
+    // dispatch(action);
   }
 
   render() {

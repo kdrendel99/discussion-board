@@ -23,5 +23,6 @@ export const toggleForm = () => ({
 export const updateScore = (id, vote) => ({
   type: c.UPDATE_SCORE,
   id,
-  vote
+  // vote
+  vote: vote
 })

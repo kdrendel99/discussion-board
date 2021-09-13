@@ -19,6 +19,7 @@ function NewPostForm(props){
       {
         title: event.target.title.value,
         body: event.target.body.value, 
+        score: 0,
         timeOpen: firestore.FieldValue.serverTimestamp()
       }
     );
