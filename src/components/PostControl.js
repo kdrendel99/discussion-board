@@ -89,7 +89,7 @@ class PostControl extends React.Component{
       currentlyVisibleState = <NewPostForm onNewPostCreation={this.handleAddingNewPostToList} />;
       buttonText = "Return to Post List";
     } else {
-      currentlyVisibleState = (<PostList postList={this.props.masterPostList} onPostSelection={this.handleChangingSelectedPost} onVoteClick={this.handleVoteClick}/>);
+      currentlyVisibleState = (<PostList onPostSelection={this.handleChangingSelectedPost} onVoteClick={this.handleVoteClick}/>);
       // Because a user will actually be clicking on the Post in the Post component, we will need to pass our new handleChangingSelectedPost method as a prop.
       buttonText = "Add Post";
     }
@@ -103,13 +103,11 @@ class PostControl extends React.Component{
 }
 
 PostControl.propTypes = {
-  masterPostList: PropTypes.object,
   formVisibleOnPage: PropTypes.bool
 };
 
 const mapStateToProps = state => {
   return {
-    masterPostList: state.masterPostList,
     formVisibleOnPage: state.formVisibleOnPage
   }
 }
