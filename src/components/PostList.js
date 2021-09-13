@@ -26,6 +26,7 @@ function PostList(props){
             formattedWaitTime={post.formattedWaitTime}
             id={post.id}
             key={post.id}/>
+            
         })}
       </React.Fragment>
     );

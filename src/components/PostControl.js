@@ -67,23 +67,24 @@ class PostControl extends React.Component{
     });
   }
 
-  handleVoteClick = (id, vote) => {
-    this.props.firestore.get({collection: 'posts', doc: id}).then((post) => {
+//Top handleVoteClick works, but is it the right way to do it?
+  handleVoteClick = (id, currScore, vote) => {
       const firestorePostScore = {
-        score: post.get("score") + vote
-        // id: post.id
+        score: currScore + vote
       }
-      console.log(firestorePostScore.score);
-      // const updatedScore = firestorePostScore + vote;
       this.props.firestore.update({collection: 'posts', doc: id}, firestorePostScore );
-      // const { dispatch } = this.props;
-      // const action = a.updateScore(firestorePostScore, vote);
-      // dispatch(action);
-    })
-    // const { dispatch } = this.props;
-    // const action = a.updateScore(id, vote);
-    // dispatch(action);
   }
+//This one also works, but everything besides the post that the button was clicked in stops rendering.
+  // handleVoteClick = (id, vote) => {
+  //   this.props.firestore.get({collection: 'posts', doc: id}).then((post) => {
+  //     const firestorePostScore = {
+  //       score: post.get("score") + vote
+  //       // id: post.id
+  //     }
+  //     // console.log(firestorePostScore.score);
+  //     this.props.firestore.update({collection: 'posts', doc: id}, firestorePostScore );
+  //   })
+  // }
 
   render() {
     let currentlyVisibleState = null;
@@ -111,10 +112,8 @@ class PostControl extends React.Component{
       } else if (this.state.selectedPost != null) {
         currentlyVisibleState = <PostDetail post={this.state.selectedPost} onClickingDelete={this.handleDeletingPost} onClickingEdit={this.handleEditClick} />
         buttonText = "Return to Post List";
-        // While our PostDetail component only takes placeholder data, we will eventually be passing the value of selectedPost as a prop.
       }
       else if (this.props.formVisibleOnPage) {
-        // This conditional needs to be updated to "else if."
         currentlyVisibleState = <NewPostForm onNewPostCreation={this.handleAddingNewPostToList} />;
         buttonText = "Return to Post List";
       } else {
