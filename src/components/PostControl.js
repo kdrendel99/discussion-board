@@ -6,7 +6,8 @@ import EditPostForm from './EditPostForm';
 import PropTypes from "prop-types";
 import * as a from './../actions';
 import { connect } from 'react-redux';
-import { withFirestore } from 'react-redux-firebase'
+import { withFirestore, isLoaded } from 'react-redux-firebase';
+
 
 
 class PostControl extends React.Component{
@@ -75,24 +76,42 @@ class PostControl extends React.Component{
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
+    const auth = this.props.firebase.auth();
+    if (!isLoaded(auth)) {
+      return (
+        <React.Fragment>
+          <h1>Loading...</h1>
+        </React.Fragment>
+      )
+    }
+    if ((isLoaded(auth)) && (auth.currentUser == null)) {
+      return (
+        <React.Fragment>
+          <h1>You must be signed in to access the discussion board.</h1>
+        </React.Fragment>
+      )
+    } 
+    if ((isLoaded(auth)) && (auth.currentUser != null)){
+  
+      if (this.state.editing) {      
+        currentlyVisibleState = <EditPostForm post = {this.state.selectedPost} onEditPost = {this.handleEditingPostInList} />
+        buttonText = "Return to Post List";
+      } else if (this.state.selectedPost != null) {
+        currentlyVisibleState = <PostDetail post={this.state.selectedPost} onClickingDelete={this.handleDeletingPost} onClickingEdit={this.handleEditClick} />
+        buttonText = "Return to Post List";
+        // While our PostDetail component only takes placeholder data, we will eventually be passing the value of selectedPost as a prop.
+      }
+      else if (this.props.formVisibleOnPage) {
+        // This conditional needs to be updated to "else if."
+        currentlyVisibleState = <NewPostForm onNewPostCreation={this.handleAddingNewPostToList} />;
+        buttonText = "Return to Post List";
+      } else {
+        currentlyVisibleState = (<PostList onPostSelection={this.handleChangingSelectedPost} onVoteClick={this.handleVoteClick}/>);
+        // Because a user will actually be clicking on the Post in the Post component, we will need to pass our new handleChangingSelectedPost method as a prop.
+        buttonText = "Add Post";
+      }
+    }
 
-    if (this.state.editing) {      
-      currentlyVisibleState = <EditPostForm post = {this.state.selectedPost} onEditPost = {this.handleEditingPostInList} />
-      buttonText = "Return to Post List";
-    } else if (this.state.selectedPost != null) {
-      currentlyVisibleState = <PostDetail post={this.state.selectedPost} onClickingDelete={this.handleDeletingPost} onClickingEdit={this.handleEditClick} />
-      buttonText = "Return to Post List";
-      // While our PostDetail component only takes placeholder data, we will eventually be passing the value of selectedPost as a prop.
-    }
-    else if (this.props.formVisibleOnPage) {
-      // This conditional needs to be updated to "else if."
-      currentlyVisibleState = <NewPostForm onNewPostCreation={this.handleAddingNewPostToList} />;
-      buttonText = "Return to Post List";
-    } else {
-      currentlyVisibleState = (<PostList onPostSelection={this.handleChangingSelectedPost} onVoteClick={this.handleVoteClick}/>);
-      // Because a user will actually be clicking on the Post in the Post component, we will need to pass our new handleChangingSelectedPost method as a prop.
-      buttonText = "Add Post";
-    }
     return (
       <React.Fragment>
         {currentlyVisibleState}
