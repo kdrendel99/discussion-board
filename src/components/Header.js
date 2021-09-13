@@ -14,6 +14,9 @@ function Header(){
           <li>
             <Link to="/signin">Sign in</Link>
           </li>
+          <li>
+            <Link to="/signup">Sign up</Link>
+          </li>
         </ul>
       </div>
       <hr/>
