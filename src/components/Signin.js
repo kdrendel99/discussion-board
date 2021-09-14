@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import firebase from "firebase/app";
-import { useHistory } from "react-router-dom";
-
+// import { useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 function Signin(){
+  const [signedIn, setSignedIn] = useState(false);
 
   function doSignIn(event) {
     event.preventDefault();
@@ -11,7 +12,7 @@ function Signin(){
     const email = event.target.signinEmail.value;
     const password = event.target.signinPassword.value;
     firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
-      // history.push("/");
+      setSignedIn(true);
       console.log("Successfully signed in!");
       
     }).catch(function(error) {
@@ -20,6 +21,7 @@ function Signin(){
   }
   function doSignOut() {
     firebase.auth().signOut().then(function() {
+      setSignedIn(false);
       console.log("Successfully signed out!");
     }).catch(function(error) {
       console.log(error.message);
@@ -27,6 +29,7 @@ function Signin(){
   }
   return (
     <React.Fragment>
+      {signedIn ? <Redirect to="/" /> : null}
       <h1>Sign In</h1>
       <form onSubmit={doSignIn}>
         <input

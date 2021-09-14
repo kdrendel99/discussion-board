@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
 const DiscussionBoardHeader = styled.h1`
-  font-size: 24px;
+  font-size: 48px;
   text-align: center;
   color: black;
 `;
@@ -16,7 +16,7 @@ function Header(){
   return(
     <React.Fragment>
       <DiscussionBoardHeader>
-        <h1>Discussion Forum</h1>
+        Discussion Forum
       </DiscussionBoardHeader>
       <CenterText>
       <p>A forum to pick your brain.</p>
