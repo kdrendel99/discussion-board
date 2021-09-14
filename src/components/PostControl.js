@@ -68,12 +68,12 @@ class PostControl extends React.Component{
   }
 
 //Top handleVoteClick works, but is it the right way to do it?
-  handleVoteClick = (id, currScore, vote) => {
-      const firestorePostScore = {
-        score: currScore + vote
-      }
-      this.props.firestore.update({collection: 'posts', doc: id}, firestorePostScore );
-  }
+  // handleVoteClick = (id, currScore, vote) => {
+  //     const firestorePostScore = {
+  //       score: currScore + vote
+  //     }
+  //     this.props.firestore.update({collection: 'posts', doc: id}, firestorePostScore );
+  // }
 //This one also works, but everything besides the post that the button was clicked in stops rendering.
   // handleVoteClick = (id, vote) => {
   //   this.props.firestore.get({collection: 'posts', doc: id}).then((post) => {
@@ -117,7 +117,7 @@ class PostControl extends React.Component{
         currentlyVisibleState = <NewPostForm onNewPostCreation={this.handleAddingNewPostToList} />;
         buttonText = "Return to Post List";
       } else {
-        currentlyVisibleState = (<PostList onPostSelection={this.handleChangingSelectedPost} onVoteClick={this.handleVoteClick}/>);
+        currentlyVisibleState = (<PostList onPostSelection={this.handleChangingSelectedPost}/>);
         // Because a user will actually be clicking on the Post in the Post component, we will need to pass our new handleChangingSelectedPost method as a prop.
         buttonText = "Add Post";
       }
