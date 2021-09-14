@@ -14,7 +14,6 @@ function Signin(){
     firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
       setSignedIn(true);
       console.log("Successfully signed in!");
-      
     }).catch(function(error) {
       console.log(error.message);
     });
