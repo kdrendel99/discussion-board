@@ -4,6 +4,8 @@ import PostControl from './PostControl';
 import Signin from "./Signin";
 import Signup from "./Signup";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// import * as firebase from 'firebase';
+
 
 function App(){
   return (
